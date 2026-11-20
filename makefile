@@ -1,15 +1,15 @@
-MAIN = libro.sil
-PDF = libro.pdf
+MAIN = ejemplo1.sil
+PDF = ejemplo1.pdf
 CHAPTERS = $(wildcard prologo.sil cap*.sil)
 
-# Compilar el libro (ejecuta dos veces para actualizar índice y referencias)
+# Compilar el libro (ejecuta dos veces para actualizar ï¿½ndice y referencias)
 all: $(PDF)
 
 $(PDF): $(MAIN) $(CHAPTERS)
 	sile $(MAIN)
 	sile $(MAIN)
 
-# Compilar y abrir automáticamente en Windows
+# Compilar y abrir automï¿½ticamente en Windows
 ver: $(PDF)
 	explorer.exe $(PDF)
 
