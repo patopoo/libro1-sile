@@ -1,13 +1,13 @@
 \begin[class=book, papersize=a4]{document}
 
 \language[main=es]
-\font[family=Libertinus Serif, size=12pt]
+\font[family=Liberation Serif, size=12pt]
 \set[parameter=document.baselineskip, value=16pt]
 
-% Cargamos el paquete para dibujar líneas finas
+% Cargamos el paquete para dibujar lineas finas
 \use[module=packages.rules]
 
-% --- CONFIGURACIÓN DE MÁRGENES (1 CM) + ENCABEZADO + PIE ---
+% --- CONFIGURACION DE MARGENES (1 CM) + ENCABEZADO + PIE ---
 \begin{script}
   local frames = {
     -- Encabezado superior
@@ -17,14 +17,14 @@
       top = "0.7cm",
       bottom = "1.45cm"
     },
-    -- Área principal del texto (incluye espacio automático para notas al pie)
+    -- Area principal del texto (incluye espacio automAtico para notas al pie)
     content = {
       left = "1cm",
       right = "100%pw - 1cm",
       top = "1.6cm",
       bottom = "100%ph - 1.5cm"
     },
-    -- Pie de página para el número de folio
+    -- Pie de pagina para el numero de folio
     folio = {
       left = "1cm",
       right = "100%pw - 1cm",
@@ -35,7 +35,7 @@
   SILE.documentState.thisPageTemplate.frames = frames
   SILE.typesetter:initFrame(SILE.getFrame("content"))
 
-  -- --- NUMERACIÓN DE PÁGINA ALTERNA (PARES IZQ / IMPARES DER) ---
+  -- --- NUMERACION DE PAGINA ALTERNA (PARES IZQ / IMPARES DER) ---
   SILE.registerCommand("output-folio", function (_, _)
     local folio = SILE.formatCounter(SILE.scratch.counters.folio)
     local isOdd = SILE.documentState.documentClass:oddPage()
@@ -53,7 +53,7 @@
   end)
 \end{script}
 
-% --- ENCABEZADOS ALTERNOS CON LÍNEA HORIZONTAL ---
+% --- ENCABEZADOS ALTERNOS CON LiNEA HORIZONTAL ---
 \define[command=even-running-header]{%
   \begin{raggedright}%
     \font[size=9pt, style=italic]{\first-mark}%
@@ -71,40 +71,40 @@
 }
 
 % ==========================================
-% 1. PORTADA (Sin numeración)
+% 1. PORTADA (Sin numeracion)
 % ==========================================
 \nofolios
 \begin{center}
   \skip[height=6cm]
-  \font[size=28pt, weight=700]{Título de mi Libro}
+  \font[size=28pt, weight=700]{Ejemplo 1}
   \par\bigskip
   \font[size=16pt]{Nombre del Autor}
 \end{center}
 \eject
 
 % ==========================================
-% 2. PÁGINAS PRELIMINARES (Números romanos)
+% 2. PAGINAS PRELIMINARES (Numeros romanos)
 % ==========================================
-% Activamos los números en romanos minúsculos (i, ii, iii...)
-% (Si los prefieres en mayúsculas I, II, III, usa display=ROMAN)
+% Activamos los numeros en romanos minusculos (i, ii, iii...)
+% (Si los prefieres en mayusculas I, II, III, usa display=ROMAN)
 \set-counter[id=folio, value=1, display=roman]
 
-% Ejemplo de Dedicatoria (opcional, sin aparecer en el índice)
+% Ejemplo de Dedicatoria (opcional, sin aparecer en el indice)
 \begin{raggedleft}
   \skip[height=4cm]
   \em{Para quienes disfrutan de la lectura.}
 \end{raggedleft}
 \eject
 
-% Índice automático
+% Indice automatico
 \tableofcontents
 \eject
 
-% Ejemplo de Prólogo o Prefacio (aparece en el índice sin número de capítulo)
+% Ejemplo de Prologo o Prefacio (aparece en el indice sin numero de capitulo)
 \include[src=prologo.sil]
 
 % ==========================================
-% 3. CUERPO DEL LIBRO (Números arábigos desde 1)
+% 3. CUERPO DEL LIBRO (Numeros arabigos desde 1)
 % ==========================================
 \set-counter[id=folio, value=1, display=arabic]
 
