@@ -1,0 +1,5 @@
+\chapter{El comienzo}
+
+Este es el primer párrafo del libro. Si quieres agregar una aclaración o referencia bibliográfica en la parte inferior de la hoja, solo debes insertar el comando correspondiente\footnote{Esta nota aparecerá automáticamente al final de esta página, separada por una línea fina y numerada de forma correlativa.}.
+
+El texto principal continúa con normalidad y SILE calcula el espacio\footnote {texto nota 2.} exacto para que las notas nunca choquen con el número de página inferior.

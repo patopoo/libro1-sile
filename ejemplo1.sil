@@ -1,0 +1,114 @@
+\begin[class=book, papersize=a4]{document}
+
+\language[main=es]
+\font[family=Libertinus Serif, size=12pt]
+\set[parameter=document.baselineskip, value=16pt]
+
+% Cargamos el paquete para dibujar líneas finas
+\use[module=packages.rules]
+
+% --- CONFIGURACIÓN DE MÁRGENES (1 CM) + ENCABEZADO + PIE ---
+\begin{script}
+  local frames = {
+    -- Encabezado superior
+    runningHead = {
+      left = "1cm",
+      right = "100%pw - 1cm",
+      top = "0.7cm",
+      bottom = "1.45cm"
+    },
+    -- Área principal del texto (incluye espacio automático para notas al pie)
+    content = {
+      left = "1cm",
+      right = "100%pw - 1cm",
+      top = "1.6cm",
+      bottom = "100%ph - 1.5cm"
+    },
+    -- Pie de página para el número de folio
+    folio = {
+      left = "1cm",
+      right = "100%pw - 1cm",
+      top = "100%ph - 1.4cm",
+      bottom = "100%ph - 0.8cm"
+    }
+  }
+  SILE.documentState.thisPageTemplate.frames = frames
+  SILE.typesetter:initFrame(SILE.getFrame("content"))
+
+  -- --- NUMERACIÓN DE PÁGINA ALTERNA (PARES IZQ / IMPARES DER) ---
+  SILE.registerCommand("output-folio", function (_, _)
+    local folio = SILE.formatCounter(SILE.scratch.counters.folio)
+    local isOdd = SILE.documentState.documentClass:oddPage()
+    
+    SILE.typesetNaturally(SILE.getFrame("folio"), function ()
+      SILE.settings:toplevelState()
+      SILE.call("font", { size = "10pt" }, function ()
+        if isOdd then
+          SILE.call("raggedleft", {}, { folio })
+        else
+          SILE.call("raggedright", {}, { folio })
+        end
+      end)
+    end)
+  end)
+\end{script}
+
+% --- ENCABEZADOS ALTERNOS CON LÍNEA HORIZONTAL ---
+\define[command=even-running-header]{%
+  \begin{raggedright}%
+    \font[size=9pt, style=italic]{\first-mark}%
+  \end{raggedright}%
+  \par\vspace[height=2pt]%
+  \hrule[width=100%fw, height=0.4pt]%
+}
+
+\define[command=odd-running-header]{%
+  \begin{raggedleft}%
+    \font[size=9pt, style=italic]{\first-mark}%
+  \end{raggedleft}%
+  \par\vspace[height=2pt]%
+  \hrule[width=100%fw, height=0.4pt]%
+}
+
+% ==========================================
+% 1. PORTADA (Sin numeración)
+% ==========================================
+\nofolios
+\begin{center}
+  \vspace[height=6cm]
+  \font[size=28pt, weight=700]{Título de mi Libro}
+  \par\bigskip
+  \font[size=16pt]{Nombre del Autor}
+\end{center}
+\eject
+
+% ==========================================
+% 2. PÁGINAS PRELIMINARES (Números romanos)
+% ==========================================
+% Activamos los números en romanos minúsculos (i, ii, iii...)
+% (Si los prefieres en mayúsculas I, II, III, usa display=ROMAN)
+\set-counter[id=folio, value=1, display=roman]
+
+% Ejemplo de Dedicatoria (opcional, sin aparecer en el índice)
+\begin{raggedleft}
+  \vspace[height=4cm]
+  \em{Para quienes disfrutan de la lectura.}
+\end{raggedleft}
+\eject
+
+% Índice automático
+\tableofcontents
+\eject
+
+% Ejemplo de Prólogo o Prefacio (aparece en el índice sin número de capítulo)
+\include[src=prologo.sil]
+
+% ==========================================
+% 3. CUERPO DEL LIBRO (Números arábigos desde 1)
+% ==========================================
+\set-counter[id=folio, value=1, display=arabic]
+
+\include[src=cap1.sil]
+\include[src=cap2.sil]
+
+\end{document}

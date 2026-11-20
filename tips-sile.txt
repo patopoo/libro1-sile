@@ -1,0 +1,6 @@
+Resumen de comandos útiles para escribir tus capítulos
+
+• Subtítulos dentro de un capítulo: \section{Nombre de la sección}
+• Cursiva y negrita: \em{texto en cursiva} y \strong{texto en negrita}
+• Nota al pie: \footnote{Contenido de la nota}
+• Compilar y abrir: Ejecuta make ver en tu terminal de WSL.
