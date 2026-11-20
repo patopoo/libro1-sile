@@ -91,7 +91,6 @@
 
 % Ejemplo de Dedicatoria (opcional, sin aparecer en el índice)
 \begin{raggedleft}
-%  \vspace[height=4cm]
   \skip[height=4cm]
   \em{Para quienes disfrutan de la lectura.}
 \end{raggedleft}
