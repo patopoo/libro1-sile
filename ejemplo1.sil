@@ -1,4 +1,5 @@
 \begin[class=book, papersize=a4]{document}
+\use[module=packages.spacers]
 
 \language[main=es]
 \font[family=Libertinus Serif, size=12pt]
