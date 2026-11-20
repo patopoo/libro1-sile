@@ -11,7 +11,7 @@ $(PDF): $(MAIN) $(CHAPTERS)
 
 # Compilar y abrir autom�ticamente en Windows
 ver: $(PDF)
-	explorer.exe $(PDF)
+	papers $(PDF)
 
 # Limpiar archivos temporales y el PDF generado
 clean:

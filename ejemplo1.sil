@@ -83,11 +83,11 @@
 \eject
 
 % ==========================================
-% 2. PAGINAS PRELIMINARES (Numeros romanos)
+% 2. PAGINAS PRELIMINARES (Números romanos)
 % ==========================================
-% Activamos los numeros en romanos minusculos (i, ii, iii...)
-% (Si los prefieres en mayusculas I, II, III, usa display=ROMAN)
-\set-counter[id=folio, value=1, display=roman]
+% Activamos los números en romanos minúsculos (i, ii, iii...)
+% (Si los prefieres en mayúsculas I, II, III, usa display=ROMAN)
+\set-counter[id=folio, value=1, display=ROMAN]
 
 % Ejemplo de Dedicatoria (opcional, sin aparecer en el indice)
 \begin{raggedleft}
