@@ -1,5 +1,4 @@
 \begin[class=book, papersize=a4]{document}
-\use[module=packages.spacers]
 
 \language[main=es]
 \font[family=Libertinus Serif, size=12pt]
@@ -76,7 +75,7 @@
 % ==========================================
 \nofolios
 \begin{center}
-  \vspace[height=6cm]
+  \skip[height=6cm]
   \font[size=28pt, weight=700]{Título de mi Libro}
   \par\bigskip
   \font[size=16pt]{Nombre del Autor}
