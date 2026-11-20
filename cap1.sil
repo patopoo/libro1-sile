@@ -1,4 +1,5 @@
-\chapter{El comienzo}
+\chapter{Título del Capítulo 1}
+\folios
 
 Este es el primer párrafo del libro. Si quieres agregar una aclaración o referencia bibliográfica en la parte inferior de la hoja, solo debes insertar el comando correspondiente\footnote{Esta nota aparecerá automáticamente al final de esta página, separada por una línea fina y numerada de forma correlativa.}.
 

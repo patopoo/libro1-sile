@@ -4,57 +4,12 @@
 \font[family=Liberation Serif, size=12pt]
 \set[parameter=document.baselineskip, value=16pt]
 
-% Cargamos el paquete para dibujar lineas finas
+% Paquete nativo para lineas finas
 \use[module=packages.rules]
 
-% --- CONFIGURACION DE MARGENES (1 CM) + ENCABEZADO + PIE ---
-\begin{script}
-  local frames = {
-    -- Encabezado superior
-    runningHead = {
-      left = "1cm",
-      right = "100%pw - 1cm",
-      top = "0.7cm",
-      bottom = "1.45cm"
-    },
-    -- Area principal del texto (incluye espacio automAtico para notas al pie)
-    content = {
-      left = "1cm",
-      right = "100%pw - 1cm",
-      top = "1.6cm",
-      bottom = "100%ph - 1.5cm"
-    },
-    -- Pie de pagina para el numero de folio
-    folio = {
-      left = "1cm",
-      right = "100%pw - 1cm",
-      top = "100%ph - 1.4cm",
-      bottom = "100%ph - 0.8cm"
-    }
-  }
-  SILE.documentState.thisPageTemplate.frames = frames
-  SILE.typesetter:initFrame(SILE.getFrame("content"))
-
-  -- --- NUMERACION DE PAGINA ALTERNA (PARES IZQ / IMPARES DER) ---
-  SILE.registerCommand("output-folio", function (_, _)
-    local folio = SILE.formatCounter(SILE.scratch.counters.folio)
-    local isOdd = SILE.documentState.documentClass:oddPage()
-    
-    SILE.typesetNaturally(SILE.getFrame("folio"), function ()
-      SILE.settings:toplevelState()
-      SILE.call("font", { size = "10pt" }, function ()
-        if isOdd then
-          SILE.call("raggedleft", {}, { folio })
-        else
-          SILE.call("raggedright", {}, { folio })
-        end
-      end)
-    end)
-  end)
-\end{script}
-
-% --- ENCABEZADOS ALTERNOS CON LiNEA HORIZONTAL ---
-\define[command=even-running-header]{%
+% --- ENCABEZADOS ALTERNOS EN .SIL PURO ---
+% Paginas pares (izquierda)
+\define[command=book:left-running-head]{%
   \begin{raggedright}%
     \font[size=9pt, style=italic]{\first-mark}%
   \end{raggedright}%
@@ -62,7 +17,8 @@
   \hrule[width=100%fw, height=0.4pt]%
 }
 
-\define[command=odd-running-header]{%
+% Paginas impares (derecha)
+\define[command=book:right-running-head]{%
   \begin{raggedleft}%
     \font[size=9pt, style=italic]{\first-mark}%
   \end{raggedleft}%
@@ -83,13 +39,12 @@
 \eject
 
 % ==========================================
-% 2. PAGINAS PRELIMINARES (Números romanos)
+% 2. PAGINAS PRELIMINARES (Numeros romanos)
 % ==========================================
-% Activamos los números en romanos minúsculos (i, ii, iii...)
-% (Si los prefieres en mayúsculas I, II, III, usa display=ROMAN)
+\folios
 \set-counter[id=folio, value=1, display=ROMAN]
 
-% Ejemplo de Dedicatoria (opcional, sin aparecer en el indice)
+% Dedicatoria
 \begin{raggedleft}
   \skip[height=4cm]
   \em{Para quienes disfrutan de la lectura.}
@@ -100,12 +55,14 @@
 \tableofcontents
 \eject
 
-% Ejemplo de Prologo o Prefacio (aparece en el indice sin numero de capitulo)
+% Prologo (recuerda poner \folios debajo de \chapter dentro de prologo.sil)
 \include[src=prologo.sil]
 
 % ==========================================
 % 3. CUERPO DEL LIBRO (Numeros arabigos desde 1)
 % ==========================================
+\open-double-page
+\folios
 \set-counter[id=folio, value=1, display=arabic]
 
 \include[src=cap1.sil]
