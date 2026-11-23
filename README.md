@@ -38,7 +38,21 @@ Resumen de comandos utiles para escribir tus capitulos
 
 % Uso en el contenido
 \titulo-seccion{Introduccion}
-Este es un p�rrafo normal con un texto \destacado{resaltado} usando estilo propio.
+Este es un párrafo normal con un texto \destacado{resaltado} usando estilo propio.
 \end{document}
 ```
 
+## arquitectura propuesta con Lua y estilos
+
+```
+coleccion-libros/
+├── estilos/
+│   └── mi-editorial.lua    <-- Tu "CSS": márgenes, fuentes, encabezados y macros
+├── libro-01/
+│   ├── libro-01.sil        <-- Archivo maestro que carga el estilo y los capítulos
+│   ├── cap-01.sil          <-- Texto limpio sin formato incrustado
+│   └── cap-02.sil
+└── libro-02/
+    ├── libro-02.sil
+    └── cap-01.sil
+```
