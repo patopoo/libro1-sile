@@ -1,12 +1,19 @@
+# Sile en el notebook
+
+## instalacion en Linux
 wsl --install
 
-sudo apt update && sudo apt install -y sile
+dnf install sile
+apt update && sudo apt install -y sile
+
+### validar
 sile --version
 
+### generar libro
 sile libro.sil
 sile libro.sil && sile libro.sil
 
-Tips
+## Tips
 
 Resumen de comandos utiles para escribir tus capitulos
 
@@ -14,6 +21,8 @@ Resumen de comandos utiles para escribir tus capitulos
 - Cursiva y negrita: \em{texto en cursiva} y \strong{texto en negrita}
 - Nota al pie: \footnote{Contenido de la nota}
 - Compilar y abrir: Ejecuta make ver en tu terminal de WSL.
+
+## Definicion de "estilos"
 
 ```
 \begin{document}
@@ -32,3 +41,4 @@ Resumen de comandos utiles para escribir tus capitulos
 Este es un párrafo normal con un texto \destacado{resaltado} usando estilo propio.
 \end{document}
 ```
+
