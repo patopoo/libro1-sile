@@ -14,3 +14,21 @@ Resumen de comandos utiles para escribir tus capitulos
 - Cursiva y negrita: \em{texto en cursiva} y \strong{texto en negrita}
 - Nota al pie: \footnote{Contenido de la nota}
 - Compilar y abrir: Ejecuta make ver en tu terminal de WSL.
+
+```
+\begin{document}
+% Definicion de "estilos"
+\define[command=titulo-seccion]{
+  \font[family=Libertinus Serif,size=16pt,weight=700]{\color[color=#1a365d]{#1}}
+  \par
+}
+
+\define[command=destacado]{
+  \em{\color[color=crimson]{#1}}
+}
+
+% Uso en el contenido
+\titulo-seccion{Introduccion}
+Este es un párrafo normal con un texto \destacado{resaltado} usando estilo propio.
+\end{document}
+```
